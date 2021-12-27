@@ -4,17 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ShortcutRacer</title>
+    <link rel="icon" href="keyboard.png">
 </head>
 <body>
-    <h1>ShortcutRacer</h1>
-    <p>Instructions: Navigate on the page as fast as possible, using whatever shortcuts you want.</p>
+    <h1 style="display:inline" >ShortcutRacer</h1><img width=50px style="display:inline; margin-left: 10px;" src="keyboard.png">
+    <p>Navigate on the page as fast as possible, using whichever shortcuts you want. Or even (gasp!) your mouse.</p>
     <!--<p>and automations you want. The game is meant to encourage use of keyboard shortcuts instead of mouse, but if it encourages people to code (with their newfound shortcuts) — all the better! Auto-generate these levels!</p>-->
-    <p>This site's shortcuts: </p>
-    <p>Level 1: Click on the input box, then the other.</p>
-    <input type="text">
+    <a href="tips.html">Tips and Tricks</a>
     <div class="timeDiv" style="visibility: visible;" id="timeDiv">Game starts in 3 seconds</div>
     <button onclick="restart()">Restart</button>
+    <button onclick="changeLevel(1)">Level 1</button>
+    <button onclick="changeLevel(2)">Level 2</button>
+    <button onclick="changeLevel(3)">Level 3</button>
+    <div id="level"
+    </div>
     <script src="main.js"></script>
 </body>
 <div>
