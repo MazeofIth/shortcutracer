@@ -29,68 +29,61 @@ var starttime;
 function millisToMinutesAndSeconds(millis) {
     var minutes = Math.floor(millis / 60000);
     var seconds = ((millis % 60000) / 1000).toFixed(3)
-    //var real_millis =  seconds*60000 -millis
     return (
         seconds == 60 ?
             (minutes + 1) + ":00" :
-            minutes + ":" + (seconds < 10 ? "0" : "") + seconds /*+ ":" + real_millis*/
+            minutes + ":" + (seconds < 10 ? "0" : "") + seconds 
     );
 }
 
+var timing_interval;
+
 function startGame() {
-    //document.getElementById('timeDiv').style.display = "none";
-    //document.getElementById('timeDiv').innerHTML = "Time elapsed: ";
     starttime = performance.now()
-    timing_inverval = setInterval(function () {
+    timing_interval = setInterval(function () {
         //console.log(performance.now()-starttime)
-        document.getElementById('timeDiv').innerHTML = "Time elapsed: " + millisToMinutesAndSeconds(performance.now() - starttime) + "seconds"
-    }, 1); performance.now()
+        elapsed = millisToMinutesAndSeconds(performance.now() - starttime)
+        document.getElementById('timeDiv').innerHTML = "Time elapsed: " + elapsed + " seconds"
+    }, 1); 
     text_input.addEventListener('focus', (event) => {
         playFinishSound()
-        clearInterval(timing_inverval)
+        clearInterval(timing_interval)
+        elapsed = millisToMinutesAndSeconds(performance.now() - starttime)
+        high_scores.push(elapsed)
+        console.log(high_scores)
+        display.innerHTML = "Level cleared in " + millisToMinutesAndSeconds(performance.now() - starttime) + " seconds"
         //var endTime = performance.now()
         //console.log(`Call to doSomething took ${endTime - startTime} milliseconds`)
     });
 }
 
 function restart() {
-
+    clearInterval(timing_interval)
+    countDown(1)
 }
 
-function startTimer(duration, display) {
+var high_scores = []
+
+function countDown(duration) {
     playStartSound()
     var timer = duration, /*minutes,*/ seconds;
-    start_interval = setInterval(function () {
-        //minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
-
-        //minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? + seconds : seconds;
-
-        //display.textContent = minutes + ":" + seconds;
-        display.textContent = seconds;
-
-        if (--timer < 0) {
-            timer = duration;
-            clearInterval(start_interval)
+    display.innerHTML = "Game starts in " + duration + " seconds"
+    count_down_start = performance.now()
+    count_down_interval = setInterval(function () {
+        elapsed_in_millis = 3000 - (performance.now() - count_down_start)
+        elapsed = millisToMinutesAndSeconds(elapsed_in_millis)
+        document.getElementById('timeDiv').innerHTML = "Game starts in: " + elapsed + " seconds"
+        if (elapsed_in_millis < 0) {
+            clearInterval(count_down_interval)
             startGame()
         }
-    }, 1000);
+    }, 1); 
 }
 
-function countDown() {
-    var someSeconds = 2.8,
-    display = document.querySelector('#time')
-    startTimer(someSeconds, display);
-}
-
-//console.log("timediv: ", timediv)
-//console.log("timediv style: ", timediv.style)
-//console.log("timediv style: ", timediv.style.visibility)
-//timediv.style.display = "none";
-//timediv.style.color = "red";
+display = document.getElementById('timeDiv')
 
 
+countDown(1)
 
 /*window.onload = function () {
 */
