@@ -85,19 +85,19 @@ countDown(countdown_time)
 
 
 function playStartSound() {
-    url = "countdown.wav"
+    url = "assets/countdown.wav"
     audio = new Audio(url);
     audio.play();
 }
 
 function playAllStartSound() {
-    url = "all_start.wav"
+    url = "assets/all_start.wav"
     audio = new Audio(url);
     audio.play();
 }
 
 function playFinishSound() {
-    url = "finish.wav"
+    url = "assets/finish.wav"
     audio = new Audio(url);
     audio.play();
 }
