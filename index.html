@@ -6,19 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShortcutRacer</title>
     <link rel="icon" href="keyboard.png">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-    <h1 style="display:inline" >ShortcutRacer</h1><img width=50px style="display:inline; margin-left: 10px;" src="keyboard.png">
-    <p>Navigate on the page as fast as possible, using whichever shortcuts you want. Or even (gasp!) your mouse.</p>
-    <!--<p>and automations you want. The game is meant to encourage use of keyboard shortcuts instead of mouse, but if it encourages people to code (with their newfound shortcuts) — all the better! Auto-generate these levels!</p>-->
+    <h1>ShortcutRacer ❌🖱</h1><!--<img width=50px style="display:inline; margin-left: 10px;" src="keyboard.png">-->
     <a href="tips.html">Tips and Tricks</a>
-    <div class="timeDiv" style="visibility: visible;" id="timeDiv">Game starts in 3 seconds</div>
-    <button onclick="restart()">Restart</button>
-    <button onclick="changeLevel(1)">Level 1</button>
-    <button onclick="changeLevel(2)">Level 2</button>
-    <button onclick="changeLevel(3)">Level 3</button>
-    <div id="level"
-    </div>
+    <p>Navigate on the page as fast as possible, using whatever keyboard shortcuts you want. Or even (gasp!) your mouse.</p>
+    <!--<p>and automations you want. The game is meant to encourage use of keyboard shortcuts instead of mouse, but if it encourages people to code (with their newfound shortcuts) — all the better! Auto-generate these levels!</p>-->
+    <div class="timeDiv" style="visibility: visible;" id="timeDiv">Game starts in 0:03:00 seconds</div>
+    <br>
+    <button onclick="restart()">Replay level ↺</button>
+    <button id="play_all" onclick="changePlayAll()">Play all (no countdowns)</button>
+    <div id="level_buttons"></div>
+    <!--<button class="level_button" onclick="changeLevel(1); restart();">Level 1</button>
+    <button  class="level_button" onclick="changeLevel(2); restart();">Level 2</button>
+    <button  class="level_button" onclick="changeLevel(3); restart();">Level 3</button>
+    <button  class="level_button" onclick="changeLevel(4); restart();">Level 4</button>
+    <button  class="level_button" onclick="changeLevel(5); restart();">Level 5</button>
+    <button  class="level_button" onclick="changeLevel(6); restart();">Level 6</button>
+    <button  class="level_button" onclick="changeLevel(7); restart();">Level 7</button>
+    <button  class="level_button" onclick="changeLevel(8); restart();">Level 8</button>-->
+    <div id="level" ></div>
     <script src="main.js"></script>
 </body>
 <div>
