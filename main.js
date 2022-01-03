@@ -34,126 +34,7 @@ document.addEventListener('keydown', function (event) {
 })
 
 var levelDescriptions = {
-	1: `<p><b>Level 1</b>: Click on all the input fields.</p>`,
-	2: `<p><b>Level 2</b>: Navigate to the bottom of the page, then up again.</p>`,
-	3: `<p><b>Level 3</b>: Move the text from the first to the second input field.</p>`,
-	4: `<p><b>Level 4</b>: Switch tabs, and then switch back.</p>`,
-	5: `<p><b>Level 5</b>: Switch the sentences' places.</p>`,
-	6: `<p><b>Level 6</b>: Copy url to input field (observe that it changes after countdown).</p>`,
-	7: `<p><b>Level 7</b>: Reload the page.</p>`,
-	8: `<p><b>Level 8</b>: What's the first word under "Game Play" on the page TypeRacer on English Wikipedia?</p>`,
-	9: `<p><b>Level 9</b>: Split screen (halve the width of the screen)</p>`
-}
-
-function createLevelButtons() {
-	for (i = 1; i <= Object.keys(levelDescriptions).length; i++) {
-
-		(Element.prototype.appendAfter = function (element) {
-			elemrrent.parentNode.insertBefore(this, element.nextSibling)
-		}), false
-
-		play_all_button = document.getElementById('level_buttons')
-		play_all_button.innerHTML +=
-			`<button class="level_button" onclick="changeLevel(` +
-			i +
-			`); restart();">Level ` +
-			i +
-			`</button>`
-	}
-}
-
-createLevelButtons()
-
-function levelsCompletedFunc() {
-	if (localStorage.getItem('levels_completed')) {
-		levels_completed = JSON.parse(localStorage.getItem('levels_completed'))
-		console.log('levels completed: ', levels_completed)
-
-		for (i = 0; i < levels_completed.length; i++) {
-			if (levels_completed.includes(i + 1)) {
-				document.getElementsByClassName('level_button')[
-					i
-				].style.backgroundColor = '#b5f5a2'
-			}
-		}
-	}
-}
-
-levelsCompletedFunc()
-
-initLevels()
-highscoreFunc()
-countDown(countdown_time)
-
-function playStartSound() {
-	url = 'assets/countdown.wav'
-	audio = new Audio(url)
-	audio.play()
-}
-
-function playAllStartSound() {
-	url = 'assets/all_start.wav'
-	audio = new Audio(url)
-	audio.play()
-}
-
-function playFinishSound() {
-	url = 'assets/finish.wav'
-	audio = new Audio(url)
-	audio.play()
-}
-
-function changeLevel(input_level) {
-	level = input_level
-	play_all = false
-}
-
-function changePlayAll() {
-	level = 1
-	countdown_time = 0
-	document.getElementsByClassName('level_button')[level - 1].style.borderWidth =
-		'5px'
-	play_all = true
-	start_start = performance.now()
-	restart()
-}
-
-function millisToSeconds(millis) {
-	var minutes = Math.floor(millis / 60000)
-	var seconds = ((millis % 60000) / 1000).toFixed(3)
-	return seconds == 60
-		? minutes + 1 + ':00'
-		: minutes + ':' + (seconds < 10 ? '0' : '') + seconds
-}
-
-function secondsToMillis(seconds) {
-	// Will probably break if more than an hour?
-	var minute_part = parseInt(seconds.substring(0, 1)) * 60 * 1000
-	var second_part = parseInt(seconds.substring(2, 4)) * 1000
-	var milli_part = parseInt(seconds.substring(5, 9))
-	var total = minute_part + second_part + milli_part
-	return total
-}
-
-function countDown(duration) {
-	if (duration != 0) {
-		playStartSound()
-	} else if (level == 1) {
-		playAllStartSound()
-	}
-	display.innerHTML = 'Game starts in ' + duration + ' seconds'
-	count_down_start = performance.now()
-	count_down_interval = setInterval(function () {
-		elapsed_in_millis = duration * 1000 - (performance.now() - count_down_start)
-		elapsed = millisToSeconds(elapsed_in_millis)
-
-		document.getElementById('timeDiv').innerHTML =
-			'Game starts in: ' + elapsed + ' min:s'
-		if (elapsed_in_millis < 0) {
-			clearInterval(count_down_interval)
-			startGame()
-		}
-	}, 1)
+	1: `<p><b>Level 1</b>: Click on all the input fields.</p>`, 2: `<p><b>Level 2</b>: Navigate to the bottom of the page, then up again.</p>`, 3: `<p><b>Level 3</b>: Move the text from the first to the second input field.</p>`, 4: `<p><b>Level 4</b>: Switch tabs, and then switch back.</p>`, 5: `<p><b>Level 5</b>: Switch the sentences' places.</p>`, 6: `<p><b>Level 6</b>: Copy url to input field (observe that it changes after countdown).</p>`, 7: `<p><b>Level 7</b>: Reload the page.</p>`, 8: `<p><b>Level 8</b>: What's the first word under "Game Play" on the page TypeRacer on English Wikipedia?</p>`, 9: `<p><b>Level 9</b>: Split screen (halve the width of the screen)</p>` } function createLevelButtons() { for (i = 1; i <= Object.keys(levelDescriptions).length; i++) { (Element.prototype.appendAfter = function (element) { elemrrent.parentNode.insertBefore(this, element.nextSibling) }), false play_all_button= play_all_button.innerHTML += `<button class="level_button" onclick="changeLevel(` + i + `); restart();">Level ` + i + `</button>` } } createLevelButtons() function levelsCompletedFunc() { if (localStorage.getItem('levels_completed')) { levels_completed = JSON.parse(localStorage.getItem('levels_completed')) //console.log('levels completed: ', levels_completed) for (i = 0; i < levels_completed.length; i++) { if (levels_completed.includes(i + 1)) { }}}}	function secondsToMillis(seconds) { // Will probably break if more than an hour?  var minute_part = parseInt(seconds.substring(0, 1)) * 60 * 1000 var second_part = parseInt(seconds.substring(2, 4)) * 1000 var milli_part = parseInt(seconds.substring(5, 9)) var total = minute_part + second_part + milli_part return total } function countDown(duration) { if (duration != 0) { playStartSound() } else if (level == 1) { playAllStartSound() } display.innerHTML = 'Game starts in ' + duration + ' seconds' count_down_start = performance.now() count_down_interval = setInterval(function () { elapsed_in_millis = duration * 1000 - (performance.now() - count_down_start) elapsed = millisToSeconds(elapsed_in_millis) document.getElementById('timeDiv').innerHTML = 'Game starts in: ' + elapsed + ' min:s' if (elapsed_in_millis < 0) { clearInterval(count_down_interval) startGame() } }, 1)
 }
 
 function startGame() {
@@ -284,14 +165,14 @@ function levelBranch() {
 
 function level1Logic(i, checkpoints) {
 	text_input[i].addEventListener('focus', function levelListener(event) {
-		if (!completed) {
+		if (!completed) {EEE
 			checkpoints[i] = true
 			text_input[i].style.backgroundColor = '#b5f5a2'
 			const isTrue = value => value
 			if (checkpoints.every(isTrue)) {
+			}
 				finishedLevel()
 			}
-		}
 	})
 }
 
@@ -307,31 +188,31 @@ function level2Logic() {
 
 	var bottom = false
 	var top = false
-
+	
 	window.onscroll = function (ev) {
 		if (
 			window.innerHeight + window.scrollY >= document.body.offsetHeight &&
+			) {
 			!completed
-		) {
 			bottom = true
 		}
 		if (window.innerHeight + window.pageYOffset == window.innerHeight) {
+		}
+		if (boftom && top) {
+		window.onscroll = null
+			finishedLevel()
+		}
+	}
+	
+	function level3Logic(checkpoints) {
 			if (bottom) {
 				top = true
 			}
 		}
-		if (bottom && top) {
-			window.onscroll = null
-			finishedLevel()
-		}
-	}
-}
-
-function level3Logic(checkpoints) {
 	function checkComplete() {
 		if (checkpoints[0] == true && checkpoints[1] == true) {
 			if (!completed) {
-				checkpoints[1] = true
+				chello[1] = true
 				text_input[1].style.backgroundColor = '#b5f5a2'
 				const isTrue = value => value
 				if (checkpoints.every(isTrue)) {
